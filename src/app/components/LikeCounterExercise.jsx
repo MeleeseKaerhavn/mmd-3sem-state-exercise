@@ -2,13 +2,27 @@
 // Importer CSS filen
 import "../component-style/like-counter-exercise.css";
 // TODO for studerende: Importer useState fra React
+import { useState } from 'react';
 
 export default function LikeCounterExercise() {
   // TODO for studerende: Opret state variabler
+  const [isLiked, setIsLiked] = useState(false);
+  const [likes, setLikes] = useState(0);
 
   // TODO for studerende: Implementer handleLike funktionen
+  function handleLike() {
+     setIsLiked(!isLiked);
 
-  return (
+  // Always increase likes
+  setLikes(l => l + 1);
+
+  console.log("Like clicked");
+  }
+
+    // ************************************Den toggler ikke tilbage til false hvilket den skal om lidt
+
+    
+      return (
     <div className="exercise-container">
       <div className="post-card">
         {/* Header */}
@@ -35,20 +49,21 @@ export default function LikeCounterExercise() {
         <div className="like-section">
           <button
             // TODO for studerende: Tilføj liked class hvis isLiked er true
-            className={`like-button`}
+            className={`like-button ${isLiked ? "liked" : ""}`}
             // TODO for studerende: Tilføj onClick
+            onClick={handleLike}
           >
             {/* TODO for studerende: Vis det rigtige hjertet (❤️ / 🤍) i span elementet herunder  */}
-            <span className="heart-icon">🤍</span>
+            <span className="heart-icon"> {isLiked ? "❤️" : "🤍" }</span>
             {/* TODO for studerende: Vis "Liked" eller "Like" */}
             {/* Hint: Brug en ternary operator */}
-            Like
+            {isLiked ? "Liked" : "Like"}
           </button>
 
           <div className="like-count">
             {/* TODO for studerende: Vis antallet af likes */}
             {/* Hint: Brug likes state variablen */}
-            likes 0
+            likes {likes}
           </div>
         </div>
 
